@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "5"
+  creationTimestamp: "2024-06-06T06:12:42Z"
+  generation: 6
+  labels:
+    app: spring-petclinic-rest
+  name: spring-petclinic-rest
+  namespace: default
+  resourceVersion: "41771"
+  uid: 44d93f4b-0c14-4a10-ab63-4bf9e19ffe3d
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 4
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: spring-petclinic-rest
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: spring-petclinic-rest
+    spec:
+      containers:
+      - image: docker.io/springcommunity/spring-petclinic-rest:3.2.1
+        imagePullPolicy: IfNotPresent
+        name: spring-petclinic-rest
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 4
+  conditions:
+  - lastTransitionTime: "2024-06-06T06:12:42Z"
+    lastUpdateTime: "2024-06-06T07:53:01Z"
+    message: ReplicaSet "spring-petclinic-rest-54f476f68" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2024-06-06T07:58:48Z"
+    lastUpdateTime: "2024-06-06T07:58:48Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  observedGeneration: 6
+  readyReplicas: 4
+  replicas: 4
+  updatedReplicas: 4
